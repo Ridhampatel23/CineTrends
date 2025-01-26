@@ -11,11 +11,17 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 const App = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
-    const [trendingMovies, setTrendingMovies] = useState([]);
-    const [movieList, setMovieList] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
+
+    const [movieList, setMovieList] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const [trendingMovies, setTrendingMovies] = useState([]);
+    const [trendingErrorMessage, setTrendingErrorMessage] = useState('');
+    const [isTrendingLoading, setIsTrendingLoading] = useState(false);
+
+
 
     // Debounce the search term to prevent too many API calls which can cause performance issues and cost a lot
     useDebounce(() => setDebouncedSearchTerm(searchTerm), 500, [searchTerm]);
@@ -62,11 +68,17 @@ const App = () => {
     };
 
     const loadTrendingMovies = async () => {
+        setIsTrendingLoading(true);
+        setTrendingErrorMessage('');
+
         try {
             const movies = await getTrendingMovies();
             setTrendingMovies(movies);
         } catch (error) {
             console.error(`Error fetching trending movies: ${error}`);
+            setTrendingErrorMessage('Error fetching trending movies. Please try again later.');
+        } finally {
+            setIsTrendingLoading(false);
         }
     }
 
