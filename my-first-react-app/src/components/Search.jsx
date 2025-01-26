@@ -1,8 +1,18 @@
 import React from 'react'
 
-const Search = () => {
+const Search = ({searchTerm, setSearchTerm}) => {
     return (
-        <div>Search</div>
+        <div className="search">
+            <div>
+                <img src="search_icon.svg" alt="search"/>
+                <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(event) => setSearchTerm(event.target.value)}
+                    placeholder="Search for movies..."
+                />
+            </div>
+        </div>
     )
 }
 export default Search
