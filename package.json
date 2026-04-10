@@ -1,7 +1,20 @@
 {
-  "dependencies": {
-    "@tailwindcss/vite": "^4.0.0",
-    "appwrite": "^16.1.0",
-    "tailwindcss": "^4.0.0"
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "preview": "vite preview"
+    },
+    "dependencies": {
+      "@tailwindcss/vite": "^4.0.0",
+      "appwrite": "^16.1.0",
+      "tailwindcss": "^4.0.0",
+      "axios": "^1.7.9",
+      "react": "^18.3.1",
+      "react-dom": "^18.3.1",
+      "react-use": "^17.6.0"
+    },
+    "devDependencies": {
+      "@vitejs/plugin-react": "^4.3.4",
+      "vite": "^6.0.5"
+    }
   }
-}
